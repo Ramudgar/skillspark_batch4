@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Responsiveness</title>
+    <style>
+      #title {
+        color: rgb(3, 3, 85);
+        font-size: 2rem;
+      }
+      img {
+        width: 500px;
+        height: auto;
+      }
+      @media screen and (max-width: 768px) {
+        img {
+          width: 450px;
+        }
+        p {
+          font-size: 1.5rem;
+          color: blue;
+        }
+      }
+
+      @media screen and (max-width: 425px) {
+        img {
+          width: 400px;
+        }
+        p {
+          font-size: 1rem;
+          color: red;
+        }
+      }
+
+      @media screen and (min-width: 320px) and (max-width: 425px) {
+        img {
+          width: 300px;
+        }
+        p {
+          font-size: 0.8rem;
+          color: green;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Responsive websites using css</h1>
+    <div>
+      <h3 id="title">Pashupatinath Temple:</h3>
+      <img
+        src="https://www.shutterstock.com/image-photo/pashupatinath-temple-by-bagmati-river-260nw-1605334645.jpg"
+        alt="pashupatinath temple image"
+      />
+      <p>
+        Pashupatinath Temple is a famous, sacred Hindu temple dedicated to
+        Pashupatinath and is located on the banks of the Bagmati River 5
+        kilometres north-east of Kathmandu Valley in the eastern city of
+        Kathmandu, the capital of Nepal. This temple is considered one of the
+        sacred temples of Hindu faith. The temple serves as the seat of the
+        national deity, Lord Pashupatinath.
+      </p>
+    </div>
+  </body>
+</html>

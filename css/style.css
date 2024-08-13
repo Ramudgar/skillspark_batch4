@@ -1,0 +1,75 @@
+#para {
+  color: red;
+  font-size: 20px;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Gilroy;
+}
+
+.container {
+  width: 100%;
+  background-color: #f3c2c2;
+}
+.item {
+  height: 100px;
+  width: 100px;
+  text-align: center;
+  line-height: 100px;
+}
+
+.box1,.box3{
+    background-color: #db6767;
+}
+
+.box2,.box4{
+    background-color: #f1e776;
+}
+
+.box1:hover,.box3:hover{
+    background-color: #5179e6;
+    cursor: pointer;
+}
+
+
+input:focus {
+  background-color: #f1e776;
+}
+
+
+#button{
+  background-color: #051b53;
+  color: #fcf9f9;
+  cursor: pointer;
+  padding:40px 60px;
+  margin:20px 0px;
+}
+
+.btn{
+  background-color: white;
+  padding:10px 15px;
+  color:rgb(225, 95, 3);
+  font-size:24px;
+  margin:0px 10px;
+  border:2px solid rgb(225, 95, 3);
+  /* border-width: 3px;
+  border-style:solid;
+  border-color:rgb(225, 95, 3); */
+  /* border-left: 5px solid rgb(225, 95, 3);
+  border-right: 5px solid rgb(225, 95, 3); */
+  border-radius: 10px;
+  /* border-radius: 50%; */
+  /* border: none  ; */
+  /* border: hidden; */
+
+}
+
+.btn:hover{
+  background-color: rgb(225, 95, 3);
+  color:white;
+  cursor: pointer;
+}
