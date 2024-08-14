@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio Websites</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Gilroy";
+      }
+
+      nav {
+        background-color: cadetblue;
+        display: flex;
+        justify-content: space-between;
+        padding: 5px 20px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      nav ul {
+        display: flex;
+        list-style: none;
+      }
+      nav ul li {
+        margin: 0px 10px;
+      }
+      nav ul li a {
+        text-decoration: none;
+        color: white;
+        /* font-size: 20px; */
+        font-size: larger;
+      }
+      nav h3{
+        color: white;
+        font-size: 40px;
+        margin:0px;
+      }
+
+      nav button{
+        background-color: white;
+        color: cadetblue;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        margin: 0px 10px;
+        cursor: pointer;
+        font-size: medium;
+      }
+
+      nav button:hover{
+        background-color: lightgray;
+
+      }
+      nav ul li a:hover{
+        border-bottom: 2px solid white;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- navbar section start -->
+    <nav>
+      <div>
+        <h3>Logo</h3>
+      </div>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Portfolio</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+      <div>
+        <button>Login</button>
+        <button>Sign Up</button>
+      </div>
+    </nav>
+  </body>
+</html>
