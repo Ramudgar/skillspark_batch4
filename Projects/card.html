@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTML Cards</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Gilroy";
+      }
+      #container {
+        background-color: rgb(214, 248, 237);
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+      }
+      #card {
+        width: 280px;
+        background-color: white;
+        border-radius: 10px;
+      }
+
+      #card img {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+      }
+      #card #card-img {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(244, 248, 249);
+        padding: 20px;
+        flex-direction: column;
+        text-align: center;
+      }
+
+      #card #card-img h3,
+      p {
+        margin: 0;
+        padding: 5px 0;
+      }
+      #card-content {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      #card-content ul {
+        text-align: center;
+        list-style: none;
+        padding: 0;
+        display: flex;
+        justify-content: space-around;
+      }
+      .item {
+        display: flex;
+        justify-content: center;
+      }
+      #btn button {
+        background-color: cadetblue;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        margin: 10px 0;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <div id="card">
+        <div id="card-img">
+          <img
+            src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="girlsImage"
+          />
+          <h3>Dummy girl</h3>
+          <p>
+            @instagram <br />
+            description description
+          </p>
+        </div>
+        <div id="card-content">
+          <ul>
+            <li>
+              <span style="color: black; font-weight: 700">140</span> <br />
+              shots
+            </li>
+            <li>
+              <span style="color: black; font-weight: 700">10</span> <br />
+              follower
+            </li>
+            <li>
+              <span style="color: black; font-weight: 700">140</span> <br />
+              following
+            </li>
+          </ul>
+          <div id="btn" class="item">
+            <button>Send Message</button>
+          </div>
+          <div class="item">
+            <h6>See more</h6>
+          </div>
+        </div>
+      </div>
+      <div id="card">
+        <div id="card-img">
+          <img
+            src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="girlsImage"
+          />
+          <h3>Dummy girl</h3>
+          <p>
+            @instagram <br />
+            description description
+          </p>
+        </div>
+        <div id="card-content">
+          <ul>
+            <li>
+              <span style="color: black; font-weight: 700">140</span> <br />
+              shots
+            </li>
+            <li>
+              <span style="color: black; font-weight: 700">10</span> <br />
+              follower
+            </li>
+            <li>
+              <span style="color: black; font-weight: 700">140</span> <br />
+              following
+            </li>
+          </ul>
+          <div id="btn" class="item">
+            <button>Send Message</button>
+          </div>
+          <div class="item">
+            <h6>See more</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
