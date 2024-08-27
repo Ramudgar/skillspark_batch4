@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Learn Tailwindcss</title>
+    <link rel="stylesheet" href="./output.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="m-0 p-0 box-border font-['Gilroy']">
+    <nav class="bg-blue-950 text-white flex justify-between lg:justify-around px-8 lg:px-0 items-center py-3">
+      <div>
+        <h1 class="font-bold text-3xl">Logo</h1>
+      </div>
+      <ul class="hidden lg:flex gap-x-10 items-center text-lg box-content">
+        <li class="hover:border-b-2 hover:border-orange-600">Home</li>
+        <li class="hover:border-b-2 hover:border-orange-600">About</li>
+        <li class="hover:border-b-2 hover:border-orange-600">Services</li>
+        <li class="hover:border-b-2 hover:border-orange-600">Contact</li>
+      </ul>
+      <div class="hidden lg:flex gap-10">
+        <button
+          class="bg-orange-600 py-2 px-3 rounded-lg text-lg hover:bg-white hover:text-orange-600"
+        >
+          Sign Up
+        </button>   
+        <button
+          class="bg-orange-600 py-2 px-3 rounded-lg text-lg hover:bg-white hover:text-orange-600"
+        >
+          Sign In
+        </button>
+      </div>
+      <div class="lg:hidden">
+        <i class="ri-menu-3-fill text-xl"></i>
+      </div>
+    </nav>
+  </body>
+</html>
