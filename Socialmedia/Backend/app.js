@@ -14,6 +14,7 @@ connectDB();
 
 
 app.use("/api/user", require("./src/routes/userRoute"));
+app.use("/api/posts", require("./src/routes/postRoute"));
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
