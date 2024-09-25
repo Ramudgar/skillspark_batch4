@@ -16,6 +16,7 @@ app.use("/uploads", express.static(__dirname + "/uploads"));
 app.use("/api/user", require("./src/routes/userRoute"));
 app.use("/api/profile", require("./src/routes/profileRoute"));
 app.use("/api/posts", require("./src/routes/postRoute"));
+app.use("/api/category", require("./src/routes/categoryRoutes"));
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
