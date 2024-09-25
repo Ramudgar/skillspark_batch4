@@ -1,3 +1,4 @@
+const { profileImage } = require("../middlewares/uploadMiddleware");
 const Profile = require("../models/profileModel");
 
 // @desc   update user profile
@@ -27,13 +28,18 @@ const updateProfile = async (req, res) => {
     //   profileFields
     // );
 
+    const profileFields = { };
+    if (bio) profileFields.bio = bio;
+    if (fullName) profileFields.fullName = fullName;
+    if (age) profileFields.age = age;
+
+    if (req.file) {
+      profileFields.profileImage = `uploads/profiles/${req.file.filename}`;
+    }
+
     const updatedProfile = await Profile.findOneAndUpdate(
       { user: userId },
-      {
-        bio: bio ?? Profile.bio,
-        fullName: fullName ?? Profile.fullName,
-        age: age ?? Profile.age,
-      },
+      {profileFields},
       { new: true }
     );
 

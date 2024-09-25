@@ -10,10 +10,11 @@ app.use(express.json());
 // Connect to MongoDB
 const connectDB = require("./src/config/db");
 connectDB();
-
-
+// Serve static files from the 'uploads' directory
+app.use("/uploads", express.static(__dirname + "/uploads"));
 
 app.use("/api/user", require("./src/routes/userRoute"));
+app.use("/api/profile", require("./src/routes/profileRoute"));
 app.use("/api/posts", require("./src/routes/postRoute"));
 
 app.listen(port, () => {
