@@ -1,9 +1,9 @@
 import React from 'react'
 
-const TestComponent = () => {
+const testComponent = () => {
   return (
     <div>testComponent</div>
   )
 }
 
-export default TestComponent
+export default testComponent
