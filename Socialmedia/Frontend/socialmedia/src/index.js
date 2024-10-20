@@ -1,16 +1,17 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
+import React from "react";
+import ReactDOM from "react-dom/client";
 // import TestComponent from './testComponent';
-import App from './App'
-import Counter from './Components/ClassComponent';
+import App from "./App";
+import "./App.css";
+import CounterFunctionalComponent from "./Components/CounterFunctionalComponent";
+// import Counter from "./Components/ClassComponent";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <>
-   {/* <TestComponent/> */}
-   <App/>
-   <Counter/>
-   </>
+    {/* <TestComponent/> */}
+    <App />
+    {/* <Counter/> */}
+    <CounterFunctionalComponent />
+  </>
 );
-
- 
