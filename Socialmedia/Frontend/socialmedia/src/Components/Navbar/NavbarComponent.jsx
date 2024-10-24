@@ -59,7 +59,7 @@ function NavbarComponent() {
                   Log In
                 </Link>
                 <Link
-                  to="/register"
+                  to="/signup"
                   className="py-2 px-2 font-medium text-white bg-green-500 rounded hover:bg-green-400 transition duration-300"
                 >
                   Sign Up

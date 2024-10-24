@@ -3,6 +3,7 @@ import NavbarComponent from "./Components/Navbar/NavbarComponent";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import PostComponent from "./Components/Post/PostComponent";
 import ProfileComponent from "./Components/Profile/ProfileComponent";
+import SignupComponent from "./Components/Signup/SignupComponent";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Route path="/" element={<HomeComponent />} />
           <Route path="/post" element={<PostComponent />} />
           <Route path="/profile" element={<ProfileComponent />} />
+          <Route path='signup' element={<SignupComponent />} />
         </Routes>
       </Router>
     </>
