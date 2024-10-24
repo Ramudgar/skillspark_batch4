@@ -1,5 +1,5 @@
 const express = require('express');
-const { createPost } = require('../controllers/postController');
+const { createPost, getAllPosts, getPostById } = require('../controllers/postController');
 const authMiddleware = require('../middlewares/authMiddleware');
 const router = express.Router();
 
@@ -11,5 +11,21 @@ const router = express.Router();
  */
 
 router.post('/create',authMiddleware, createPost);
+
+/**
+ * @route   GET /api/posts/all
+ * @desc    Get all posts
+ * @access  Private
+ * @returns response of all posts with status code and post data
+ */
+router.post('/all', authMiddleware,getAllPosts);
+
+/**
+ * @route   GET /api/posts/:id
+ * @desc    Get a post by id
+ * @access  Private
+ * @returns response of post with status code and post data
+ */
+router.get('/getbypostid/:id', authMiddleware,getPostById);
 
 module.exports = router;

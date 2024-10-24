@@ -10,6 +10,12 @@ const postSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+
+  category: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref: "Category",
+  },
   likes: [
     {
       user: {

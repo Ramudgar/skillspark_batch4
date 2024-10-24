@@ -1,11 +1,14 @@
 const express = require("express");
 const app = express();
 const dotenv = require("dotenv");
+const cors = require("cors");
 dotenv.config();
 const port = process.env.PORT;
 
 // Middleware for body parser
 app.use(express.json());
+// Middleware for CORS
+app.use(cors());
 
 // Connect to MongoDB
 const connectDB = require("./src/config/db");

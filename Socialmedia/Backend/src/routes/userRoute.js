@@ -7,7 +7,7 @@ const { userRegister,userLogin} = require("../controllers/userController");
 
 
 // router to create a new user
-router.post("/create", userRegister);
+router.post("/signup", userRegister);
 
 // router.post( '/create',userController.createUser);
 
