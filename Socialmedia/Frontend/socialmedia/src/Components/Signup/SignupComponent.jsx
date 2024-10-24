@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState } from "react";
 import "remixicon/fonts/remixicon.css";
 
@@ -10,21 +11,31 @@ const SignupComponent = () => {
     setShowPassword(!showPassword);
   };
 
-  const handleSubmit = (e) => {
+  const handleSignupForm = async (e) => {
     e.preventDefault();
-    // Handle form submission
-    console.log("Email:", email);
-    console.log("Password:", password);
+    try {
+      const response = await axios.post(
+        "http://localhost:8000/api/user/signup",
+        {
+          email,
+          password,
+        }
+      );
+      console.log(response.data.msg);
+    } catch (err) {
+      console.log(err.response.data.msg);
+    }
   };
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-white">
       <form
-        onSubmit={handleSubmit}
+        onSubmit={handleSignupForm}
         className="bg-black p-6 rounded-lg shadow-md w-full max-w-sm"
       >
         <h2 className="text-2xl font-bold text-green-500 mb-4">Sign Up</h2>
         <div className="mb-4">
+          {/* <p className="text-white">{email}</p> */}
           <label className="block text-green-500 mb-2" htmlFor="email">
             Email
           </label>
@@ -38,6 +49,7 @@ const SignupComponent = () => {
           />
         </div>
         <div className="mb-4 relative">
+          {/* <p className="text-white">{password}</p> */}
           <label className="block text-green-500 mb-2" htmlFor="password">
             Password
           </label>
@@ -51,7 +63,9 @@ const SignupComponent = () => {
           />
           <i
             onClick={togglePasswordVisibility}
-            className={`ri-eye${showPassword ? "-off" : ""}-line absolute right-3 top-3 cursor-pointer text-green-500`}
+            className={`ri-eye${
+              showPassword ? "-off" : ""
+            } absolute right-3 top-3 cursor-pointer text-green-500`}
           />
         </div>
         <button
