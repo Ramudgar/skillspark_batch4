@@ -1,20 +1,41 @@
+import axios from "axios";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import "remixicon/fonts/remixicon.css";
 
 const LoginComponent = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const Navigate = useNavigate();
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission
-    console.log("Email:", email);
-    console.log("Password:", password);
+    try {
+      const response = await axios.post(
+        "http://localhost:8000/api/user/login",
+        {
+          email,
+          password,
+        }
+      );
+      toast.success(response.data.msg, {
+        position: "top-center",
+      });
+      setTimeout(() => {
+        Navigate("/profile");
+      }, 1000);
+    } catch (err) {
+      console.log(err.response.data.msg);
+      toast.error(err.response.data.msg, {
+        position: "top-center",
+      });
+    }
   };
 
   return (
@@ -51,7 +72,9 @@ const LoginComponent = () => {
           />
           <i
             onClick={togglePasswordVisibility}
-            className={`ri-eye${showPassword ? "-off" : ""}-line absolute right-3 top-3 cursor-pointer text-green-500`}
+            className={`ri-eye${
+              showPassword ? "-off" : ""
+            }-line absolute right-3 top-3 cursor-pointer text-green-500`}
           />
         </div>
         <button
