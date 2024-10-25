@@ -1,11 +1,14 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import "remixicon/fonts/remixicon.css";
 
 const SignupComponent = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -21,9 +24,22 @@ const SignupComponent = () => {
           password,
         }
       );
-      console.log(response.data.msg);
+      toast.success(response.data.msg, {
+        position: "top-center",
+      });
+
+      setTimeout(() => {
+        navigate("/login");
+        // window.location.href = "/login";
+        // window.location.reload();
+      }, 1000);
+
+      // console.log(response.data.msg);
     } catch (err) {
-      console.log(err.response.data.msg);
+      // console.log(err.response.data.msg);
+      toast.error(err.response.data.msg, {
+        position: "top-center",
+      });
     }
   };
 
