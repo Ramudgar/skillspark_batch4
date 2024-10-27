@@ -9,8 +9,8 @@ const createCategory = async (req, res) => {
       return res.status(400).json({ msg: "Category already exists" });
     }
     const newCategory = new Category({ name });
-    const resonse = await newCategory.save();
-    res.status(201).json({ msg: "Category created successfully", resonse });
+    const response = await newCategory.save();
+    res.status(201).json({ msg: "Category created successfully", response });
   } catch (error) {
     res.status(500).json({ msg: error.message });
   }

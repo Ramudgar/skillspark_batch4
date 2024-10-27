@@ -1,6 +1,11 @@
-const express = require('express');
-const { createPost, getAllPosts, getPostById } = require('../controllers/postController');
-const authMiddleware = require('../middlewares/authMiddleware');
+const express = require("express");
+const {
+  createPost,
+  getAllPosts,
+  getPostById,
+} = require("../controllers/postController");
+const authMiddleware = require("../middlewares/authMiddleware");
+const { postImageUpload } = require("../middlewares/uploadMiddleware");
 const router = express.Router();
 
 /**
@@ -10,7 +15,12 @@ const router = express.Router();
  * @returns response of post creation with status code and post data
  */
 
-router.post('/create',authMiddleware, createPost);
+router.post(
+  "/create",
+  authMiddleware,
+  postImageUpload.single("postImage"),
+  createPost
+);
 
 /**
  * @route   GET /api/posts/all
@@ -18,7 +28,7 @@ router.post('/create',authMiddleware, createPost);
  * @access  Private
  * @returns response of all posts with status code and post data
  */
-router.post('/all', authMiddleware,getAllPosts);
+router.post("/all", authMiddleware, getAllPosts);
 
 /**
  * @route   GET /api/posts/:id
@@ -26,6 +36,6 @@ router.post('/all', authMiddleware,getAllPosts);
  * @access  Private
  * @returns response of post with status code and post data
  */
-router.get('/getbypostid/:id', authMiddleware,getPostById);
+router.get("/getbypostid/:id", authMiddleware, getPostById);
 
 module.exports = router;

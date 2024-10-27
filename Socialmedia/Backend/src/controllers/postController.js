@@ -6,10 +6,18 @@ const UserModel = require("../models/userModel");
 const createPost = async (req, res) => {
   try {
     const data = req.body;
-    const newPost = new PostModel({
+    const postData = {
       user: req.user.id,
+      title: data.title,
       description: data.description,
       category: data.category,
+    };
+
+    if (req.file) {
+      postData.postImage = `uploads/posts/${req.file.filename}`;
+    }
+    const newPost = new PostModel({
+      ...postData,
     });
     const post = await newPost.save();
     return res.status(201).json({ msg: "Post created", post });

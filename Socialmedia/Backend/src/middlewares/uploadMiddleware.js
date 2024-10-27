@@ -53,6 +53,17 @@ const profileImage = multer({
   fileFilter: filter,
 });
 
+const postImage = diskStorage({
+  destination: getDestination("posts"),
+  filename,
+});
+
+const postImageUpload = multer({
+  storage: postImage,
+  fileFilter: filter,
+});
+
 module.exports = {
-  profileImage
+  profileImage,
+  postImageUpload,
 };
