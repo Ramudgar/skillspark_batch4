@@ -24,9 +24,13 @@ const LoginComponent = () => {
           password,
         }
       );
+      // console.log(response);
+      localStorage.setItem("token", response.data.token);
+      localStorage.setItem("user", JSON.stringify(response.data.user));
       toast.success(response.data.msg, {
         position: "top-center",
       });
+
       setTimeout(() => {
         Navigate("/profile");
       }, 1000);

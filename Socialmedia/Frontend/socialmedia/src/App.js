@@ -7,6 +7,8 @@ import SignupComponent from "./Components/Signup/SignupComponent";
 import LoginComponent from "./Components/Login/LoginComponent";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import CategoryComponent from "./Components/CategoryComponent/CategoryComponent";
+import AddPostComponent from "./Components/Post/AddPostComponent";
 
 function App() {
   return (
@@ -20,6 +22,9 @@ function App() {
           <Route path="/profile" element={<ProfileComponent />} />
           <Route path="/signup" element={<SignupComponent />} />
           <Route path="/login" element={<LoginComponent />} />
+          <Route path='/category' element={<CategoryComponent />} />
+          <Route path="/addpost" element={<AddPostComponent />} />
+          <Route path="*" element={<h1>Not Found</h1>} />
         </Routes>
       </Router>
     </>

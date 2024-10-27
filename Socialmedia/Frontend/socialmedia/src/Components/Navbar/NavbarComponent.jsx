@@ -1,5 +1,20 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 function NavbarComponent() {
+  const Navigate = useNavigate();
+  const token = localStorage.getItem("token");
+  // console.log(token)
+  const user = localStorage.getItem("user");
+  let userRole = "";
+  if (token) {
+    userRole = JSON.parse(user).userRole;
+  }
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    Navigate("/login");
+  };
+
   return (
     <nav className="bg-white shadow-lg">
       <div className="max-w-7xl mx-auto px-4">
@@ -20,12 +35,46 @@ function NavbarComponent() {
                 Home
               </Link>
 
-              <Link
-                to="/profile"
-                className="py-4 px-2  text-gray-500 font-semibold hover:text-green-500 transition duration-300 "
-              >
-                Profile
-              </Link>
+              {token && (
+                <>
+                  <Link
+                    to="/profile"
+                    className="py-4 px-2  text-gray-500 font-semibold hover:text-green-500 transition duration-300 "
+                  >
+                    Profile
+                  </Link>
+                  <Link
+                    to="/addpost"
+                    className="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300"
+                  >
+                    Add Post
+                  </Link>
+                  <Link
+                    to="/product"
+                    className="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300"
+                  >
+                    Setting
+                  </Link>
+
+                  {userRole === "admin" && (
+                    <>
+                      <Link
+                        to="/category"
+                        className="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300"
+                      >
+                        Category
+                      </Link>
+                    </>
+                  )}
+
+                  <button
+                    onClick={handleLogout}
+                    className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-gray-200 transition duration-300"
+                  >
+                    Log Out
+                  </button>
+                </>
+              )}
 
               <Link
                 to="/post"
@@ -33,44 +82,25 @@ function NavbarComponent() {
               >
                 Post
               </Link>
-              <Link
-                to="/product"
-                className="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300"
-              >
-                Setting
-              </Link>
 
-              <Link
-                to="/category"
-                className="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300"
-              >
-                Category
-              </Link>
-
-              <button className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-gray-200 transition duration-300">
-                Log Out
-              </button>
-
-              <div className="hidden md:flex items-center space-x-3">
-                <Link
-                  to="/login"
-                  className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-gray-200 transition duration-300"
-                >
-                  Log In
-                </Link>
-                <Link
-                  to="/signup"
-                  className="py-2 px-2 font-medium text-white bg-green-500 rounded hover:bg-green-400 transition duration-300"
-                >
-                  Sign Up
-                </Link>
-                <Link
-                  to="/register"
-                  className="py-2 px-2 font-medium text-white bg-green-500 rounded hover:bg-green-400 transition duration-300"
-                >
-                  Notification
-                </Link>
-              </div>
+              {!token && (
+                <>
+                  <div className="hidden md:flex items-center space-x-3">
+                    <Link
+                      to="/login"
+                      className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-gray-200 transition duration-300"
+                    >
+                      Log In
+                    </Link>
+                    <Link
+                      to="/signup"
+                      className="py-2 px-2 font-medium text-white bg-green-500 rounded hover:bg-green-400 transition duration-300"
+                    >
+                      Sign Up
+                    </Link>
+                  </div>
+                </>
+              )}
             </div>
           </div>
           <div>
