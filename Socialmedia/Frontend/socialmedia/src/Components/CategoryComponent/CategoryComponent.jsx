@@ -14,7 +14,7 @@ const CategoryComponent = () => {
         const response = await axios.get(
           "http://localhost:8000/api/category/all"
         );
-        console.log(response.data.categories);
+        // console.log(response.data.categories);
         setCategories(response.data.categories);
       } catch (error) {
         console.error("Error fetching categories:", error);
@@ -32,11 +32,24 @@ const CategoryComponent = () => {
     try {
       if (editingId) {
         // Update category
-        const response = await axios.put(`/api/categories/${editingId}`, {
-          name: categoryInput,
-        });
+        const response = await axios.put(
+          `http://localhost:8000/api/category/update/${editingId}`,
+          {
+            name: categoryInput,
+          },
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        );
+        // console.log(response.data);
+        toast.success(response.data.msg);
         setCategories(
-          categories.map((cat) => (cat._id === editingId ? response.data : cat))
+          categories.map((cat) =>
+            cat._id === editingId ? response.data.response : cat
+          )
         );
         setEditingId(null);
       } else {
@@ -70,7 +83,18 @@ const CategoryComponent = () => {
   // Handle delete action
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`/api/categories/${id}`);
+      const response=await axios.delete(`http://localhost:8000/api/category/delete/${id}`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+      toast.success(response.data.msg,
+      {
+        position: "top-right",
+        autoClose: 1000,
+      }
+      );
       setCategories(categories.filter((cat) => cat._id !== id));
     } catch (error) {
       console.error("Error deleting category:", error);
