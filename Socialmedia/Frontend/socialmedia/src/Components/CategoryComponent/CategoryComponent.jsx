@@ -11,8 +11,11 @@ const CategoryComponent = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get("/api/categories");
-        setCategories(response.data);
+        const response = await axios.get(
+          "http://localhost:8000/api/category/all"
+        );
+        console.log(response.data.categories);
+        setCategories(response.data.categories);
       } catch (error) {
         console.error("Error fetching categories:", error);
       }
