@@ -19,23 +19,15 @@ const createCategory = async (req, res) => {
 // @desc  update a category by id
 const updateCategory = async (req, res) => {
   try {
+    const catId = req.params.id;
     const { name } = req.body;
-    const category = await Category.findOne({ name });
+    const category = await Category.findById(catId);
     if (!category) {
       return res.status(404).json({ msg: "Category not found" });
     }
-
-    const categoryItems = {};
-    if (name) categoryItems.name = name;
-
-    const updatedCategory = await Category.findByIdAndUpdate(
-      catId,
-      { categoryItems },
-      { new: true }
-    );
-    return res
-      .status(200)
-      .json({ msg: "Category updated successfully", updatedCategory });
+    category.name = name;
+    const response = await category.save();
+    res.status(200).json({ msg: "Category updated successfully", response });
   } catch (error) {
     res.status(500).json({ msg: error.message });
   }
@@ -45,7 +37,7 @@ const updateCategory = async (req, res) => {
 const getAllCategories = async (req, res) => {
   try {
     const categories = await Category.find();
-    res.status(200).json({msg:"categories found successfully", categories });
+    res.status(200).json({ msg: "categories found successfully", categories });
   } catch (error) {
     res.status(500).json({ msg: error.message });
   }
@@ -69,11 +61,13 @@ const getCategoryById = async (req, res) => {
 const deleteCategory = async (req, res) => {
   try {
     const catId = req.params.id;
-     const category=await Category.findOneAndDelete(catId);
+    const category = await Category.findOneAndDelete(catId);
     if (!category) {
       return res.status(404).json({ msg: "Category not found" });
     }
-    return res.status(200).json({ msg: "Category deleted successfully", category });
+    return res
+      .status(200)
+      .json({ msg: "Category deleted successfully", category });
   } catch (error) {
     res.status(500).json({ msg: error.message });
   }
@@ -82,12 +76,18 @@ const deleteCategory = async (req, res) => {
 // @desc delete all categories
 
 const deleteAllCategories = async (req, res) => {
-    try {
-        const response = await Category.deleteMany();
-        res.status(200).json({ msg: "Categories deleted successfully", response });
-    } catch (error) {
-        res.status(500).json({ msg: error.message });
-    }
-    };
-module.exports = { createCategory, updateCategory, getAllCategories, getCategoryById, deleteCategory, deleteAllCategories };
-
+  try {
+    const response = await Category.deleteMany();
+    res.status(200).json({ msg: "Categories deleted successfully", response });
+  } catch (error) {
+    res.status(500).json({ msg: error.message });
+  }
+};
+module.exports = {
+  createCategory,
+  updateCategory,
+  getAllCategories,
+  getCategoryById,
+  deleteCategory,
+  deleteAllCategories,
+};
