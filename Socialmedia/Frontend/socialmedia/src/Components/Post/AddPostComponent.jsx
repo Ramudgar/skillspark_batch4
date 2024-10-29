@@ -1,25 +1,85 @@
-import React, { useState } from 'react';
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
-const AddPostComponent
- = () => {
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [category, setCategory] = useState('');
+const AddPostComponent = () => {
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [category, setCategory] = useState("");
   const [image, setImage] = useState(null);
+  const [categories, setCategories] = useState([]);
+
+  const Navigate = useNavigate();
 
   const handleImageChange = (e) => {
     setImage(e.target.files[0]);
+    // console.log(e.target);
   };
 
-  const handleSubmit = (e) => {
+  // console.log(image);
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission logic
-    console.log({ title, description, category, image });
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("description", description);
+    formData.append("category", category);
+    formData.append("postImage", image);
+
+    try {
+      const response = await axios.post(
+        "http://localhost:8000/api/post/create",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+      toast.success(response.data.msg, {
+        position: "top-center",
+        autoClose: 1000,
+      });
+
+      setTimeout(() => {
+        Navigate("/post");
+      }, 1000);
+
+      // clear the form
+      setTitle("");
+      setDescription("");
+      setCategory("");
+      setImage(null);
+
+      // console.log(response);
+    } catch (error) {
+      console.error("Error creating post:", error);
+    }
   };
+
+  useEffect(() => {
+    // Fetch categories from API on component mount
+    const fetchCategories = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:8000/api/category/all"
+        );
+        // console.log(response)
+        setCategories(response.data.categories);
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+      }
+    };
+
+    fetchCategories();
+  }, []);
 
   return (
     <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow-lg">
-      <h2 className="text-2xl font-semibold text-gray-800 text-center">Create a Social Media Post</h2>
+      <h2 className="text-2xl font-semibold text-gray-800 text-center">
+        Create a Social Media Post
+      </h2>
       <form onSubmit={handleSubmit} className="space-y-6">
         <div>
           <label className="block text-gray-700 font-medium">Title</label>
@@ -52,14 +112,17 @@ const AddPostComponent
             required
           >
             <option value="">Select category</option>
-            <option value="Travel">Travel</option>
-            <option value="Food">Food</option>
-            <option value="Technology">Technology</option>
-            <option value="Lifestyle">Lifestyle</option>
+            {categories.map((cat) => (
+              <option key={cat._id} value={cat._id}>
+                {cat.name}
+              </option>
+            ))}
           </select>
         </div>
         <div>
-          <label className="block text-gray-700 font-medium">Upload Image</label>
+          <label className="block text-gray-700 font-medium">
+            Upload Image
+          </label>
           <input
             type="file"
             accept="image/*"
@@ -79,5 +142,4 @@ const AddPostComponent
   );
 };
 
-export default AddPostComponent
-;
+export default AddPostComponent;
